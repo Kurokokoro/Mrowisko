@@ -1,30 +1,30 @@
 class Ant
-    def initialize(x, y, allRoles = [], antRole = "Warrior")
+    def initialize(x, y, all_roles = [], ant_role = "Warrior")
         @position = [x, y]
-        @role = antRole
+        @role = ant_role
         @encounters = Hash.new
-        for i in 0..(allRoles.length - 1)
-            @encounters[allRoles[i]] = 0
+        for i in 0..(all_roles.length - 1)
+            @encounters[all_roles[i]] = 0
         end
     end
 
-    def GetPos()
+    def get_position()
         return @position
     end
 
-    def GetRole()
+    def get_role()
         return @role
     end
 
-    def MakeEncounter(ant)
-        @encounters[ant.GetRole()] += 1
+    def make_encounter(ant)
+        @encounters[ant.get_role()] += 1
     end
     
-    def MoveToPosition(newX, newY)
-        @position = [newX, newY]
+    def move_to_position(new_x, new_y)
+        @position = [new_x, new_y]
     end
 
-    def MoveInRandomDirection()
+    def move_in_random_direction()
         random = rand(0..1)
         position = rand(0..1)
         if (random > 0)
@@ -34,4 +34,3 @@ class Ant
         end
     end
 end
-        
