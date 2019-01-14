@@ -1,65 +1,66 @@
 require './Ant'
 
-def PrintToTerminal(ants, xSize, ySize, allAntRoles)
-    pos = ySize
-    antSymbol = "\u{1F41C}"
-    for y in 0..(ySize - 1)
+def print_to_treminal(ants, x_size, y_size, all_ant_roles)
+    position = y_size
+    ant_symbol = "\u{1F41C}"
+    for y in 0..(y_size - 1)
         print "\033[K"
-        for x in 0..(xSize - 1)
-            flag, index = CheckAntPos(ants, x, y)
+        for x in 0..(x_size - 1)
+            flag, index = check_ant_position(ants, x, y)
             if (flag)
-                print "\e[#{allAntRoles[ants[index].GetRole()]}m#{antSymbol}\e[0m"
+                print "\e[#{all_ant_roles[ants[index].get_role()]}m#{ant_symbol}\e[0m"
             else
                 print " "
             end
         end
         print "\n"
     end
-    print "\033[#{pos}A"
+    print "\033[#{position}A"
 end
 
-def CheckAntPos(ants, x, y)
+def check_ant_position(ants, x, y)
     for i in 0..(ants.length - 1)
-        if (ants[i].GetPos() == [x, y])
+        if (ants[i].get_position() == [x, y])
             return true, i
         end
     end
     return false, 0
 end
 
-def GenetarteNewBorderAnt(xSize, ySize)
-    randY = rand(ySize)
-    if (randY == 0 || randY == (ySize - 1))
-        randX = rand(xSize)
+def generate_new_border_ant(x_size, y_size)
+    rand_y = rand(y_size)
+    if (rand_y == 0 || rand_y == (y_size - 1))
+        rand_x = rand(x_size)
     else
-        randX = rand(0..1)
-        if (randX == 1)
-            randX = xSize - 1
+        rand_x = rand(0..1)
+        if (rand_x == 1)
+            rand_x = x_size - 1
         end
     end
-    return Ant.new(randX, randY)
+    return Ant.new(rand_x, rand_y)
 end
 
-def SimulateAnts(tabXSize, tabYSize, numberOfAnts, antMovementIterations, allAntRoles)
-    antTab = []
-    for i in 1..numberOfAnts
-        ant = Ant.new(rand(tabXSize), rand(tabYSize), allAntRoles.keys, allAntRoles.keys[rand(allAntRoles.length)])
-        antTab.push(ant)
+def simulate_ants(tab_x_size, tab_y_size, number_of_ants, ant_movement_iteration, all_ant_roles)
+    ant_tab = []
+    for i in 1..number_of_ants
+        ant = Ant.new(rand(tab_x_size), rand(tab_y_size), all_ant_roles.keys, all_ant_roles.keys[rand(all_ant_roles.length)])
+        ant_tab.push(ant)
     end
-    for i in 1..antMovementIterations
-        PrintToTerminal(antTab, tabXSize, tabYSize, allAntRoles)
-        for j in 0..(antTab.length - 1)
-            antTab[j].MoveInRandomDirection()
-            if (antTab[j].GetPos()[0] >= tabXSize || antTab[j].GetPos()[0] <= 0) ||
-            (antTab[j].GetPos()[1] >= tabYSize || antTab[j].GetPos()[1] <= 0)
-            antTab[j] = GenetarteNewBorderAnt(tabXSize, tabYSize)
+    for i in 1..ant_movement_iteration
+        print_to_treminal(ant_tab, tab_x_size, tab_y_size, all_ant_roles)
+        for j in 0..(ant_tab.length - 1)
+            ant_tab[j].move_in_random_direction()
+            if (ant_tab[j].get_position()[0] >= tab_x_size || ant_tab[j].get_position()[0] <= 0) ||
+            (ant_tab[j].get_position()[1] >= tab_y_size || ant_tab[j].get_position()[1] <= 0)
+            ant_tab[j] = generate_new_border_ant(tab_x_size, tab_y_size)
             end
         end
         sleep(0.3)
     end
-    print "\033[#{tabYSize}B"
+    print "\033[#{tab_y_size}B"
 end
 
+# I thik this can be deleted, right?
 class String
     def black;          "\e[30m#{self}\e[0m" end
     def red;            "\e[31m#{self}\e[0m" end
@@ -86,10 +87,9 @@ class String
     def reverse_color;  "\e[7m#{self}\e[27m" end
     end
 
-
-tabXSize = 40;
-tabYSize = 15;
-numberOfAnts = 15
-antMovementIterations = 20
-allAntRoles = {"Warrior" => 31, "Gatherer" => 34, "Worker" => 27}
-SimulateAnts(tabXSize, tabYSize, numberOfAnts, antMovementIterations, allAntRoles)
+tab_x_size = 40
+tab_y_size = 15
+number_of_ants = 15
+ant_movement_iteration = 20
+all_ant_roles = {"Warrior" => 31, "Gatherer" => 34, "Worker" => 27}
+simulate_ants(tab_x_size, tab_y_size, number_of_ants, ant_movement_iteration, all_ant_roles)
