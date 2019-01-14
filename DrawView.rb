@@ -1,7 +1,7 @@
 require './Ant'
 
 def PrintToTerminal(ants, xSize, ySize, allAntRoles)
-    pos = ySize
+    position = ySize
     antSymbol = "\u{1F41C}"
     for y in 0..(ySize - 1)
         print "\033[K"
@@ -15,7 +15,7 @@ def PrintToTerminal(ants, xSize, ySize, allAntRoles)
         end
         print "\n"
     end
-    print "\033[#{pos}A"
+    print "\033[#{position}A"
 end
 
 def CheckAntPos(ants, x, y)

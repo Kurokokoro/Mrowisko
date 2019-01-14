@@ -26,11 +26,11 @@ class Ant
 
     def MoveInRandomDirection()
         random = rand(0..1)
-        pos = rand(0..1)
+        position = rand(0..1)
         if (random > 0)
-            @position[pos] = @position[pos] + 1
+            @position[position] = @position[position] + 1
         else
-            @position[pos] = @position[pos] - 1
+            @position[position] = @position[position] - 1
         end
     end
 end
