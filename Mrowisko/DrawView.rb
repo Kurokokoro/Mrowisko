@@ -18,7 +18,7 @@ def print_to_treminal(ants, x_size, y_size, all_ant_roles)
     print "\033[#{position}A"
 end
 
-def CheckAntPos(ants, x, y)
+def check_ant_position(ants, x, y)
     flag = false
     index = 0
     for i in 0..(ants.length - 1)
