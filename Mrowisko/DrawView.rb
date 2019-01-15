@@ -1,5 +1,8 @@
 require './Ant'
 
+CLEARLINE = "\033[K"
+CSI = "\033" #CONTROL_SEQUENCE_INTRODUCER 
+
 tab_x_size = 40
 tab_y_size = 15
 number_of_ants = 15
@@ -10,7 +13,7 @@ def print_to_treminal(ants, x_size, y_size, all_ant_roles)
     position = y_size
     ant_symbol = "\u{1F41C}"
     for y in 0..(y_size - 1)
-        print "\033[K"
+        print "#{CLEARLINE}"
         for x in 0..(x_size - 1)
             flag, index = check_ant_position(ants, x, y)
             if (flag)
@@ -21,7 +24,7 @@ def print_to_treminal(ants, x_size, y_size, all_ant_roles)
         end
         print "\n"
     end
-    print "\033[#{position}A"
+    print "#{CSI}[#{position}A"
 end
 
 def check_ant_position(ants, x, y)
@@ -65,7 +68,7 @@ def simulate_ants(tab_x_size, tab_y_size, number_of_ants, ant_movement_iteration
         end
         sleep(0.3)
     end
-    print "\033[#{tab_y_size}B"
+    print "#{CSI}[#{tab_y_size}B"
 end
 
 simulate_ants(tab_x_size, tab_y_size, number_of_ants, ant_movement_iteration, all_ant_roles)
