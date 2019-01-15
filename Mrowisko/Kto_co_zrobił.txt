@@ -5,7 +5,6 @@ Michał:
     Remove Dead Code
     Encapsulate Variable
 
-
 Bartek:
     Rename Functions
     Change Function Declaration - Remove Parameter
@@ -15,3 +14,9 @@ Bartek:
     Fix Indents
 
 Dawid:
+    More changeable parameters and rename file to be more informative
+    Introduce Parameter Object (Remove Unused Default Value)
+    Replace Primitive with Object (Decompose Conditional)
+    Move Printing Functionality to New File
+    Replace Inline Code with Function Call
+    Rename Functions and Variables
