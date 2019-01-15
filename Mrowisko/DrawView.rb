@@ -2,7 +2,10 @@ require './Ant'
 
 CLEARLINE = "\033[K"
 CSI = "\033" #CONTROL_SEQUENCE_INTRODUCER 
-ALL_ANTS_ROLES = {"Warrior" => 31, "Gatherer" => 34, "Worker" => 27}
+RED = "31"
+BLUE = "34"
+WHITE = "27"
+ALL_ANTS_ROLES = {"Warrior" => RED, "Gatherer" => BLUE, "Worker" => WHITE}
 
 tab_x_size = 40
 tab_y_size = 15
