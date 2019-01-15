@@ -33,7 +33,6 @@ class Ant
         average = average.floor
         @encounters.each do |key, value|
             if (value < average)
-                #puts "Role: " + @role + "/" + key
                 @role = key
             end
         end

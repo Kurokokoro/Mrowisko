@@ -1,0 +1,17 @@
+Michał:
+    Rename Variables
+    Change PascalCase to snake_case
+    Extract Variables
+    Remove Dead Code
+    Encapsulate Variable
+
+
+Bartek:
+    Rename Functions
+    Change Function Declaration - Remove Parameter
+    Replace Magic Literal
+    Changeable parameters at the beginning of the file
+    Remove Hardcoded Parameters
+    Fix Indents
+
+Dawid:
