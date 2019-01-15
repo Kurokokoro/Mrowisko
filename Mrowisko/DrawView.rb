@@ -41,7 +41,7 @@ def check_ant_position(ants, x, y)
     return flag, index
 end
 
-def generate_new_border_ant(x_size, y_size)
+def generate_new_ant_on_border(x_size, y_size)
     rand_y = rand(y_size)
     if (rand_y == 0 || rand_y == (y_size - 1))
         rand_x = rand(x_size)
@@ -63,10 +63,10 @@ def simulate_ants(tab_x_size, tab_y_size, number_of_ants, ant_movement_iteration
     for i in 1..ant_movement_iteration
         print_to_treminal(ant_tab, tab_x_size, tab_y_size)
         for j in 0..(ant_tab.length - 1)
-            ant_tab[j].move_in_random_direction()
+            ant_tab[j].move_randomly()
             if (ant_tab[j].get_position()[0] >= tab_x_size || ant_tab[j].get_position()[0] <= 0) ||
             (ant_tab[j].get_position()[1] >= tab_y_size || ant_tab[j].get_position()[1] <= 0)
-            ant_tab[j] = generate_new_border_ant(tab_x_size, tab_y_size)
+            ant_tab[j] = generate_new_ant_on_border(tab_x_size, tab_y_size)
             end
         end
         sleep(0.3)

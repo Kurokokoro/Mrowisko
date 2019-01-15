@@ -24,7 +24,7 @@ class Ant
         @position = [new_x, new_y]
     end
 
-    def move_in_random_direction()
+    def move_randomly()
         random = rand(0..1)
         position = rand(0..1)
         if (random > 0)
