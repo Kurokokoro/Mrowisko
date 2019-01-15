@@ -1,5 +1,5 @@
 class Ant
-    def initialize(x, y, all_roles = [], ant_role = "Warrior")
+    def initialize(x, y, all_roles = [], ant_role = "")
         @position = [x, y]
         @role = ant_role
         @encounters = Hash.new
