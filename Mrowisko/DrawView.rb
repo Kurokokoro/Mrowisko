@@ -1,5 +1,11 @@
 require './Ant'
 
+tab_x_size = 40
+tab_y_size = 15
+number_of_ants = 15
+ant_movement_iteration = 20
+all_ant_roles = {"Warrior" => 31, "Gatherer" => 34, "Worker" => 27}
+
 def print_to_treminal(ants, x_size, y_size, all_ant_roles)
     position = y_size
     ant_symbol = "\u{1F41C}"
@@ -62,10 +68,4 @@ def simulate_ants(tab_x_size, tab_y_size, number_of_ants, ant_movement_iteration
     print "\033[#{tab_y_size}B"
 end
 
-tab_x_size = 40
-tab_y_size = 15
-number_of_ants = 15
-ant_movement_iteration = 20
-all_ant_roles = {"Warrior" => 31, "Gatherer" => 34, "Worker" => 27}
 simulate_ants(tab_x_size, tab_y_size, number_of_ants, ant_movement_iteration, all_ant_roles)
-
