@@ -78,6 +78,15 @@ def generate_new_ant_on_border(x_size, y_size)
     return Ant.new(rand_x, rand_y, ALL_ANTS_ROLES.keys)
 end
 
+def has_ant_crossed_border(ant, x_size, y_size)
+    if (ant.get_position()[0] >= x_size || ant.get_position()[0] <= 0) ||
+        (ant.get_position()[1] >= y_size || ant.get_position()[1] <= 0)
+        return true
+    else
+        return false
+    end
+end
+
 def simulate_ants(tab_x_size, tab_y_size, number_of_ants, ant_movement_iteration)
     ant_tab = []
     for i in 1..number_of_ants
@@ -88,8 +97,7 @@ def simulate_ants(tab_x_size, tab_y_size, number_of_ants, ant_movement_iteration
         print_to_treminal(ant_tab, tab_x_size, tab_y_size)
         for j in 0..(ant_tab.length - 1)
             ant_tab[j].move_randomly()
-            if (ant_tab[j].get_position()[0] >= tab_x_size || ant_tab[j].get_position()[0] <= 0) ||
-            (ant_tab[j].get_position()[1] >= tab_y_size || ant_tab[j].get_position()[1] <= 0)
+            if (has_ant_crossed_border(ant_tab[j], tab_x_size, tab_y_size))
               ant_tab[j] = generate_new_ant_on_border(tab_x_size, tab_y_size)
             end
         end

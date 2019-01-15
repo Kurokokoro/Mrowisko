@@ -2,9 +2,8 @@
 
 class Ant
     def initialize(x, y, all_roles = [])
-        ant_role = all_roles[rand(all_roles.length)]
         @position = [x, y]
-        @role = ant_role
+        @role = all_roles[rand(all_roles.length)]
         @encounters = Hash.new
         @encounters.default = 0
         for i in 0..(all_roles.length - 1)
