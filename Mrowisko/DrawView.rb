@@ -66,7 +66,7 @@ def simulate_ants(tab_x_size, tab_y_size, number_of_ants, ant_movement_iteration
             ant_tab[j].move_randomly()
             if (ant_tab[j].get_position()[0] >= tab_x_size || ant_tab[j].get_position()[0] <= 0) ||
             (ant_tab[j].get_position()[1] >= tab_y_size || ant_tab[j].get_position()[1] <= 0)
-            ant_tab[j] = generate_new_ant_on_border(tab_x_size, tab_y_size)
+              ant_tab[j] = generate_new_ant_on_border(tab_x_size, tab_y_size)
             end
         end
         sleep(0.3)
