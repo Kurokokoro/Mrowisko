@@ -1,7 +1,8 @@
 
 
 class Ant
-    def initialize(x, y, all_roles = [], ant_role = "")
+    def initialize(x, y, all_roles = [])
+        ant_role = all_roles[rand(all_roles.length)]
         @position = [x, y]
         @role = ant_role
         @encounters = Hash.new
