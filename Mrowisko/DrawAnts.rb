@@ -2,7 +2,7 @@ CLEARLINE = "\033[K"
 CSI = "\033" #CONTROL_SEQUENCE_INTRODUCER 
 ANT_SYMBOL = "\u{1F41C}"
 
-def print_to_treminal(ants, x_size, y_size)
+def print_ants_to_treminal(ants, x_size, y_size)
     position = y_size
     for y in 0..(y_size - 1)
         print "#{CLEARLINE}"

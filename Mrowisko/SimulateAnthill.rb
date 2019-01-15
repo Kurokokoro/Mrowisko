@@ -2,16 +2,16 @@ require './Ant'
 require './DrawAnts'
 
 RED = "31"
-BLUE = "34"
-WHITE = "27"
-ALL_ANTS_ROLES = {"Warrior" => RED, "Gatherer" => BLUE, "Worker" => WHITE}
+BLUE = "35"
+GREEN = "32"
+ALL_ANTS_ROLES = {"Warrior" => RED, "Gatherer" => BLUE, "Worker" => GREEN}
 
 SLEEP_TIME = 0.3
 
 tab_x_size = 40
 tab_y_size = 15
 number_of_ants = 15
-ant_movement_iteration = 20
+ant_movement_iterations = 20
 
 def generate_new_ant_on_border(x_size, y_size)
     rand_y = rand(y_size)
@@ -35,7 +35,7 @@ def has_ant_crossed_border(ant, x_size, y_size)
     end
 end
 
-def create_ants(tab_x_size, tab_y_size, number_of_ants)
+def create_anthill(tab_x_size, tab_y_size, number_of_ants)
     ant_tab = []
     for i in 1..number_of_ants
         ant = Ant.new(rand(tab_x_size), rand(tab_y_size), ALL_ANTS_ROLES.keys)
@@ -44,10 +44,10 @@ def create_ants(tab_x_size, tab_y_size, number_of_ants)
     return ant_tab
 end
 
-def simulate_ants(tab_x_size, tab_y_size, number_of_ants, ant_movement_iteration)
+def simulate_anthill(tab_x_size, tab_y_size, number_of_ants, ant_movement_iterations)
     ant_tab = create_ants(tab_x_size, tab_y_size, number_of_ants)
-    for i in 1..ant_movement_iteration
-        print_to_treminal(ant_tab, tab_x_size, tab_y_size)
+    for i in 1..ant_movement_iterations
+        print_ants_to_treminal(ant_tab, tab_x_size, tab_y_size)
         for j in 0..(ant_tab.length - 1)
             ant_tab[j].move_randomly()
             if (has_ant_crossed_border(ant_tab[j], tab_x_size, tab_y_size))
@@ -60,4 +60,4 @@ def simulate_ants(tab_x_size, tab_y_size, number_of_ants, ant_movement_iteration
 end
 
 
-simulate_ants(tab_x_size, tab_y_size, number_of_ants, ant_movement_iteration)
+simulate_ants(tab_x_size, tab_y_size, number_of_ants, ant_movement_iterations)

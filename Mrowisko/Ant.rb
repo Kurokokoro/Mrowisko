@@ -24,7 +24,7 @@ class Ant
         self.check_if_change_role()
     end
 
-    def check_if_change_role()
+    def change_role_if_needed()
         average = 0
         @encounters.each do |key, value|
             average += value
