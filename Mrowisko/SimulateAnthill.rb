@@ -44,20 +44,30 @@ def create_anthill(tab_x_size, tab_y_size, number_of_ants)
     return ant_tab
 end
 
+def move_anthill(ant_tab, tab_x_size, tab_y_size)
+    for j in 0..(ant_tab.length - 1)
+        ant_tab[j].move_randomly()
+        if (has_ant_crossed_border(ant_tab[j], tab_x_size, tab_y_size))
+          ant_tab[j] = generate_new_ant_on_border(tab_x_size, tab_y_size)
+        end
+    end
+end
+
 def simulate_anthill(tab_x_size, tab_y_size, number_of_ants, ant_movement_iterations)
-    ant_tab = create_ants(tab_x_size, tab_y_size, number_of_ants)
+    ant_tab = create_anthill(tab_x_size, tab_y_size, number_of_ants)
     for i in 1..ant_movement_iterations
         print_ants_to_treminal(ant_tab, tab_x_size, tab_y_size)
-        for j in 0..(ant_tab.length - 1)
-            ant_tab[j].move_randomly()
-            if (has_ant_crossed_border(ant_tab[j], tab_x_size, tab_y_size))
-              ant_tab[j] = generate_new_ant_on_border(tab_x_size, tab_y_size)
-            end
-        end
+        move_anthill(ant_tab, tab_x_size, tab_y_size)
+        # for j in 0..(ant_tab.length - 1)
+        #     ant_tab[j].move_randomly()
+        #     if (has_ant_crossed_border(ant_tab[j], tab_x_size, tab_y_size))
+        #       ant_tab[j] = generate_new_ant_on_border(tab_x_size, tab_y_size)
+        #     end
+        # end
         sleep(SLEEP_TIME)
     end
     print "#{CSI}[#{tab_y_size}B"
 end
 
 
-simulate_ants(tab_x_size, tab_y_size, number_of_ants, ant_movement_iterations)
+simulate_anthill(tab_x_size, tab_y_size, number_of_ants, ant_movement_iterations)

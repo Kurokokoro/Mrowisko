@@ -21,7 +21,7 @@ class Ant
 
     def make_encounter(ant)
         @encounters[ant.get_role()] += 1
-        self.check_if_change_role()
+        self.change_role_if_needed()
     end
 
     def change_role_if_needed()
