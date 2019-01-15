@@ -1,8 +1,11 @@
+
+
 class Ant
     def initialize(x, y, all_roles = [], ant_role = "")
         @position = [x, y]
         @role = ant_role
         @encounters = Hash.new
+        @encounters.default = 0
         for i in 0..(all_roles.length - 1)
             @encounters[all_roles[i]] = 0
         end
@@ -18,6 +21,22 @@ class Ant
 
     def make_encounter(ant)
         @encounters[ant.get_role()] += 1
+        self.check_if_change_role()
+    end
+
+    def check_if_change_role()
+        average = 0
+        @encounters.each do |key, value|
+            average += value
+        end
+        average = average / @encounters.length
+        average = average.floor
+        @encounters.each do |key, value|
+            if (value < average)
+                #puts "Role: " + @role + "/" + key
+                @role = key
+            end
+        end
     end
     
     def move_to_position(new_x, new_y)

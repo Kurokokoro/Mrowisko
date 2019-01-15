@@ -35,10 +35,33 @@ def check_ant_position(ants, x, y)
     index = 0
     for i in 0..(ants.length - 1)
         if (ants[i].get_position() == [x, y])
-            return true, i
+            check_ant_encounter(ants, i, x, y)
+            if (flag == true)
+                while (ants[i].get_position() == [x, y])
+                    ants[i].move_randomly()
+                end
+            else
+                flag = true
+                index = i
+            end
         end
     end
     return flag, index
+end
+
+def check_ant_encounter(ants, ant_idx, ant_x, ant_y)
+    for i in 0..(ants.length - 1) 
+        if (i == ant_idx)
+            next
+        end
+        for x in -1..1
+            for y in -1..1
+                if (ants[i].get_position() == [ant_x + x, ant_y + y])
+                    ants[ant_idx].make_encounter(ants[i])
+                end
+            end
+        end
+    end
 end
 
 def generate_new_ant_on_border(x_size, y_size)
@@ -51,7 +74,7 @@ def generate_new_ant_on_border(x_size, y_size)
             rand_x = x_size - 1
         end
     end
-    return Ant.new(rand_x, rand_y)
+    return Ant.new(rand_x, rand_y, ALL_ANTS_ROLES.keys, ALL_ANTS_ROLES.keys[rand(ALL_ANTS_ROLES.length)])
 end
 
 def simulate_ants(tab_x_size, tab_y_size, number_of_ants, ant_movement_iteration)
@@ -69,7 +92,7 @@ def simulate_ants(tab_x_size, tab_y_size, number_of_ants, ant_movement_iteration
               ant_tab[j] = generate_new_ant_on_border(tab_x_size, tab_y_size)
             end
         end
-        sleep(0.3)
+        sleep(0.5)
     end
     print "#{CSI}[#{tab_y_size}B"
 end
